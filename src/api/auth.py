@@ -104,14 +104,13 @@ async def edit_user_profile(
                 "value": {
                     "name": "Игорь",
                     "nick_name": "Котопес",
-                    "email": "koto-pes@mail.ru",
                     "password": "abcd1234",
                 },
             },
         }
     ),
 ):
-    if role not in ("admin", "user", "guest"):
+    if role not in ("admin", "user"):
         raise WrongUserDataHTTPException
     await AuthService(db).edit_user_profile(user_id, user_data, exclude_unset=False)
     return status.HTTP_200_OK
@@ -122,7 +121,5 @@ async def edit_user_profile(
     summary="Обноввление пары access/refresh токенов",
     description="<h1>Обновляет аксесс ключ на основе рефреша. При этом обновляется кука с аксесс токеном.</h1>",
 )
-async def refresh(
-    request: Request, response: Response, db: DBDep
-):
+async def refresh(request: Request, response: Response, db: DBDep):
     return await AuthService(db).refresh_tokens(request, response)
