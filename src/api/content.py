@@ -13,6 +13,6 @@ async def get_admin_content(role: UserRoleDep):
 
 @router.get("/user-content")
 async def get_user_content(role: UserRoleDep):
-    if role != "admin":
+    if role != "user":
         raise AdminOnlyAccessHTTPException
     return {"content": "Только для пользователей"}
