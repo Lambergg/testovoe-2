@@ -11,7 +11,7 @@ docker run --name test_db \
 -e POSTGRES_PASSWORD=YOU_PASS \
 -e POSTGRES_DB=Testovoe \
 --network=testNetwork \
---volume pg-booking-data:/var/lib/postgresql/data \
+--volume pg-test-data:/var/lib/postgresql/data \
 -d postgres:16
 
 4) Создание образа Redis \
